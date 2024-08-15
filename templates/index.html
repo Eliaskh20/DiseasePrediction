@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Model Predictions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #343a40;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        header h1 {
+            color: #007bff;
+            font-size: 3rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: center;
+            max-width: 1300px;
+            width: 100%;
+            box-sizing: border-box;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            width: calc(30% - 20px);
+            max-width: 300px;
+            height: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            color: #007bff;
+        }
+
+        .card i {
+            margin: 10px 0;
+            font-size: 2rem;
+            color: #007bff;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card a {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card a:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: calc(45% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Model Prediction App</h1>
+    </header>
+    <main>
+        <div class="card">
+            <h2>Blood Glucose Prediction</h2>
+            <i class="fas fa-vial" aria-hidden="true"></i>
+            <p>Predict the risk of Blood Glucose levels.</p>
+            <a href="{{ url_for('page1') }}">Get Started</a>
+        </div>
+        <div class="card">
+            <h2>Advanced Blood Glucose Prediction</h2>
+            <i class="fas fa-medkit" aria-hidden="true"></i>
+            <p>Explore another model for Blood Glucose prediction.</p>
+            <a href="{{ url_for('page3') }}">Get Started</a>
+        </div>
+        <div class="card">
+            <h2>Heart Disease Risk Assessment</h2>
+            <i class="fas fa-heartbeat" aria-hidden="true"></i>
+            <p>Use our model to predict the risk of heart disease.</p>
+            <a href="{{ url_for('page2') }}">Get Started</a>
+        </div>
+        <div class="card">
+            <h2>Heart Disease Prediction Model</h2>
+            <i class="fas fa-heartbeat" aria-hidden="true"></i>
+            <p>Use our model to predict the risk of heart disease.</p>
+            <a href="{{ url_for('page4') }}">Get Started</a>
+        </div>
+        <div class="card">
+            <h2>Parkinson Disease Diagnosis</h2>
+            <i class="fas fa-brain" aria-hidden="true"></i>
+            <p>Use our model to predict the risk of Parkinson disease.</p>
+            <a href="{{ url_for('page5') }}">Get Started</a>
+        </div>
+        <div class="card">
+            <h2>Thyroid Disease Risk Assessment</h2>
+            <i class="fas fa-pills" aria-hidden="true"></i>
+            <p>Use our model to predict the risk of Thyroid disease.</p>
+            <a href="{{ url_for('page6') }}">Get Started</a>
+        </div>
+    </main>
+
+    <!-- Chatbot Script -->
+    <!-- Chatbot Script -->
+<script>
+    window.chatbotSettings = {
+        botId: 'YOUR_BOT_ID', // استبدل بـ ID الخاص بالشاتبوت
+        botName: 'DiseaseBot',
+        botIcon: 'https://example.com/path/to/icon.png' // استبدل برابط أيقونة الشاتبوت
+    };
+
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://cdn.chatbot.com/widget.js'; // استبدل برابط السكربت الفعلي للشاتبوت
+        script.async = true;
+        document.body.appendChild(script);
+    })();
+
+
+       !function() {
+        var t = document.createElement("script");
+        t.type = "text/javascript", t.async = !0, t.src = "https://js.driftt.com/include/your_unique_id.js",
+        document.head.appendChild(t);
+    }();
+</script>
+
+</body>
+</html>

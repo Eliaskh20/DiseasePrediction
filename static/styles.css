@@ -1,0 +1,247 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #343a40;
+    overflow-x: hidden; /* Prevent horizontal scroll when sidebar is open */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%); /* Hide the sidebar off-screen */
+    background-color: #007bff;
+    color: white;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding-top: 60px;
+    z-index: 1000;
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: white;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #0056b3;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 36px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Open Button Styles */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.openbtn.hidden {
+    opacity: 0; /* Hide the button when the sidebar is open */
+}
+
+.openbtn:hover {
+    background-color: #0056b3;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Show the sidebar */
+}
+
+.openbtn.open {
+    margin-left: 250px; /* Adjust margin to account for sidebar width */
+}
+
+.openbtn:not(.hidden) {
+    display: block; /* Ensure button is shown when not hidden */
+}
+
+/* Header Styles */
+h1 {
+    color: #007bff;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+/* Form Styles */
+#svm-form,
+#knn-form {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.form-row,
+.form-rowfour {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row > div,
+.form-rowfour > div {
+    flex: 1;
+    min-width: calc(30% - 15px);
+}
+
+.form-rowfour > div {
+    min-width: calc(20% - 15px);
+}
+
+.form-row label,
+.form-rowfour label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.form-row input,
+.form-rowfour input,
+.form-rowfour select,
+.form-row select {
+    width: 90%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Button Styles */
+button {
+    background-color: #007bff;
+    align-items: center;
+    margin-top: 20px;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Result Box Styles */
+.result-row {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    gap: 20px;
+    width: 900px;
+    margin-top: 20px;
+}
+
+.result-box {
+    background: #ffffff;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 25px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.high-risk {
+    border: 3px solid #f5c6cb;
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.low-risk {
+    border: 3px solid #c3e6cb;
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Link Styles */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+a:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Form Submit Styles */
+.form-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Footer Styles */
+footer {
+    position: inline;
+    bottom: 0;
+    width: 100%;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+}
+
+footer i {
+    color: #f00;
+}
+
+footer p {
+    margin-bottom: 10px;
+}

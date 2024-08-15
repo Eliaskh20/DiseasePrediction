@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNN Model Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <div id="mySidebar" class="sidebar">
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+        <a href="{{ url_for('index') }}">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="{{ url_for('page1') }}">
+            <i class="fas fa-vial"></i> Blood Glucose
+        </a>
+        <a href="{{ url_for('page3') }}">
+            <i class="fas fa-medkit"></i> Blood Glucose2
+        </a>
+        <a href="{{ url_for('page2') }}">
+            <i class="fas fa-heartbeat"></i> Heart Disease
+        </a>
+        <a href="{{ url_for('page4') }}">
+            <i class="fas fa-stethoscope"></i> Heart Disease2
+        </a>
+        <a href="{{ url_for('page5') }}">
+            <i class="fas fa-brain"></i> Parkinson Disease
+        </a>
+        <a href="{{ url_for('page6') }}">
+            <i class="fas fa-pills"></i> Thyroid Disease
+        </a>
+    </div>
+
+    <button class="openbtn" onclick="openNav()">☰</button>
+    <div class="main-content">
+    <h1>Heart Disease Prediction</h1>
+
+    <form id="knn-form" action="{{ url_for('page2') }}" method="post">
+        <div class="form-rowfour">
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+    </div>
+    <div>
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+    </div>
+    <div>
+        <label for="chest_pain_type">Chest Pain Type:</label>
+        <select id="chest_pain_type" name="chest_pain_type" required>
+            <option value="1">Typical Angina</option>
+            <option value="2">Atypical Angina</option>
+            <option value="3">Non-anginal Pain</option>
+            <option value="4">Asymptomatic</option>
+        </select>
+    </div>
+    <div>
+        <label for="bp">Blood Pressure:</label>
+        <input type="number" id="bp" name="bp" required>
+    </div>
+</div>
+<div class="form-row">
+    <div>
+        <label for="cholesterol">Cholesterol:</label>
+        <input type="number" id="cholesterol" name="cholesterol" required>
+    </div>
+    <div>
+        <label for="fbs_over_120">FBS Over 120:</label>
+        <select id="fbs_over_120" name="fbs_over_120" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+    <div>
+        <label for="ekg_results">EKG Results:</label>
+        <select id="ekg_results" name="ekg_results" required>
+            <option value="0">Normal</option>
+            <option value="1">ST-T Wave Abnormality</option>
+            <option value="2">Left Ventricular Hypertrophy</option>
+        </select>
+    </div>
+</div>
+<div class="form-row">
+    <div>
+        <label for="max_hr">Max Heart Rate:</label>
+        <input type="number" id="max_hr" name="max_hr" required>
+    </div>
+    <div>
+        <label for="exercise_angina">Exercise Induced Angina:</label>
+        <select id="exercise_angina" name="exercise_angina" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+    <div>
+        <label for="st_depression">ST Depression:</label>
+        <input type="number" step="0.1" id="st_depression" name="st_depression" required>
+    </div>
+</div>
+<div class="form-row">
+    <div>
+        <label for="slope_of_st">Slope of ST Segment:</label>
+        <select id="slope_of_st" name="slope_of_st" required>
+            <option value="1">Upsloping</option>
+            <option value="2">Flat</option>
+            <option value="3">Downsloping</option>
+        </select>
+    </div>
+    <div>
+        <label for="number_of_vessels_fluro">Number of Vessels:</label>
+        <select id="number_of_vessels_fluro" name="number_of_vessels_fluro" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div>
+        <label for="thallium">Thallium:</label>
+        <select id="thallium" name="thallium" required>
+            <option value="3">Normal</option>
+            <option value="6">Fixed Defect</option>
+            <option value="7">Reversible Defect</option>
+        </select>
+    </div>
+</div>
+
+
+       <div class="form-submit">
+         <button type="submit">Predict</button>
+       </div>
+    </form>
+    </div>
+    <div class="result-row">
+        <div id="knnResult" class="result-box">KNN Model Result Here</div>
+    </div>
+    <footer>
+        <p>Create this model by Gharam Al Abdallah <i class="fas fa-heart"></i></p>
+    </footer>
+    <script>
+      function openNav() {
+            document.getElementById("mySidebar").classList.add("open");
+            document.querySelector(".openbtn").classList.add("hidden");
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").classList.remove("open");
+            document.querySelector(".openbtn").classList.remove("hidden");
+        }
+        document.getElementById('knn-form').onsubmit = async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const formObject = Object.fromEntries(formData.entries());
+
+            const knnResultBox = document.getElementById('knnResult');
+
+            try {
+                const response = await fetch('{{ url_for("page2") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formObject),
+                });
+
+                const result = await response.json();
+
+                if (result.knn_prediction === 1) {
+                    knnResultBox.textContent = 'High Risk Detected';
+                    knnResultBox.className = 'result-box high-risk';
+                } else {
+                    knnResultBox.textContent = 'Low Risk Detected';
+                    knnResultBox.className = 'result-box low-risk';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                knnResultBox.textContent = 'Error Occurred';
+                knnResultBox.className = 'result-box high-risk';
+            }
+        };
+    </script>
+</body>
+</html>
